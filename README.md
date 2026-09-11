@@ -38,3 +38,13 @@ certutil -hashfile KTR_LyricMV-<版>-setup.exe SHA256
 
 .NET、SkiaSharp（Skia）、NAudio、OpenTK を同梱しています。ライセンス表記は、ダウンロードしたファイルの中の
 `THIRD-PARTY-NOTICES.txt` をご覧ください。
+
+## 免責事項
+
+本ソフトウェアは無償で提供するもので、動作・品質・特定の目的への適合性などについて、いかなる保証もいたしません。
+本ソフトウェアの使用または使用できなかったことによって生じたいかなる損害（データの消失、プロジェクトや作成した動画の
+破損、パソコンの不具合などを含みます）についても、作者は一切の責任を負いません。ご利用は利用者ご自身の責任でお願いします。
+
+This software is provided free of charge, "as is", without warranty of any kind. The author accepts no liability
+for any damage arising from its use or inability to use it, including loss of data or damage to projects or videos.
+Use it at your own risk.
