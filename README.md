@@ -1,3 +1,5 @@
+<img src="icon.png" width="96" height="96" alt="KTR_LyricMV のアイコン">
+
 # KTR_LyricMV
 
 歌詞アニメーションのミュージックビデオを作る Windows 用の無料ソフトです。
