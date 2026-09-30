@@ -24,6 +24,8 @@
 - .NET は同梱しているので、別のインストールは不要です
 - **動画の書き出しと動画素材の読み込みには [ffmpeg](https://ffmpeg.org/download.html) が必要です**（同梱していません）。
   準備の手順は、ダウンロードしたファイルの中の `README.txt` と使い方ガイドにあります
+- JIZURA レイヤーには Microsoft Edge WebView2 ランタイムが必要です（Windows 11 には最初から入っています）
+- 読み上げて並べるには [VOICEVOX](https://voicevox.hiroshiba.jp/) が必要です（使うときだけ）
 
 ## はじめて起動するとき
 
@@ -38,8 +40,9 @@ certutil -hashfile KTR_LyricMV-<版>-setup.exe SHA256
 
 ## 同梱ソフトウェア
 
-.NET、SkiaSharp（Skia）、NAudio、OpenTK を同梱しています。ライセンス表記は、ダウンロードしたファイルの中の
-`THIRD-PARTY-NOTICES.txt` をご覧ください。
+.NET、SkiaSharp（Skia）、NAudio、OpenTK、[JIZURA](https://github.com/852wa/JIZURA)（MIT ライセンス。作者 hakoniwa）、
+[KanjiVG](https://kanjivg.tagaini.net/) のデータ（CC BY-SA 3.0）、Microsoft.Web.WebView2 を同梱しています。ライセンス表記は、
+ダウンロードしたファイルの中の `THIRD-PARTY-NOTICES.txt` をご覧ください。
 
 ## 免責事項
 
