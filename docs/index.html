@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KTR_LyricMV | 歌詞動画を作る無料ソフト</title>
+<meta name="description" content="曲を読み込んで、拍に合わせて歌詞を並べ、文字の見た目と動きを選ぶだけ。歌詞動画を MP4 に書き出せる、Windows 用の無料ソフトです。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KTR_LyricMV | 歌詞動画を作る無料ソフト">
+<meta property="og:description" content="曲を読み込んで、拍に合わせて歌詞を並べ、文字の見た目と動きを選ぶだけ。歌詞動画を MP4 に書き出せる、Windows 用の無料ソフトです。">
+<meta property="og:url" content="https://ktr-shibata.github.io/KTR_LyricMV-releases/">
+<meta property="og:image" content="https://ktr-shibata.github.io/KTR_LyricMV-releases/assets/hero-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+  /* Layout: one column like a song's timeline - a hero with the download, then beats 1-2-3 to start, then what it does. */
+  :root {
+    --bg: #f6f4fb;          /* page ground, a faint dusk violet */
+    --surface: #ffffff;
+    --ink: #1d1a2b;
+    --ink-dim: #5d5873;
+    --rule: #e2deee;
+    --accent: #2f6df6;      /* the app's blue (selection, buttons) */
+    --accent-ink: #ffffff;
+    --marker: #d61fb8;      /* the timeline's marker magenta, used once per section */
+    --dusk-a: #2b2350;      /* the sample's sky */
+    --dusk-b: #e0866a;
+    --chip: #eeebf7;
+    --display: "Dela Gothic One", "Zen Kaku Gothic New", "Yu Gothic UI", sans-serif;
+    --body: "Zen Kaku Gothic New", "Yu Gothic UI", "Hiragino Sans", "Meiryo", sans-serif;
+    --mono: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15131f; --surface: #1e1b2b; --ink: #ecebf4; --ink-dim: #a7a2bd; --rule: #302c42;
+      --accent: #5b8cff; --accent-ink: #0d0b16; --marker: #ff5ce6; --chip: #262238; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15131f; --surface: #1e1b2b; --ink: #ecebf4; --ink-dim: #a7a2bd; --rule: #302c42;
+    --accent: #5b8cff; --accent-ink: #0d0b16; --marker: #ff5ce6; --chip: #262238; color-scheme: dark;
+  }
+
+  body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.8; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding-inline: 20px; padding-block: 0 64px; }
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--marker); outline-offset: 3px; border-radius: 6px; }
+  h1, h2, h3 { text-wrap: balance; line-height: 1.35; }
+  h2 { font-family: var(--display); font-weight: 400; font-size: clamp(22px, 3.2vw, 28px); margin: 0 0 18px; letter-spacing: .02em; }
+  .unused-proposal { font-size: 13px; color: var(--ink-dim); text-align: center; padding-block: 10px; border-bottom: 1px dashed var(--rule); }
+
+  /* ---- top bar */
+  .bar { display: flex; align-items: center; gap: 12px; padding-block: 18px; }
+  .bar img { width: 36px; height: 36px; border-radius: 8px; }
+  .bar b { font-family: var(--display); font-weight: 400; font-size: 18px; letter-spacing: .02em; }
+  .bar nav { margin-left: auto; display: flex; gap: 18px; font-size: 14px; flex-wrap: wrap; }
+  .bar nav a { color: var(--ink-dim); text-decoration: none; }
+  .bar nav a:hover { color: var(--ink); }
+
+  /* ---- hero */
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 40px; align-items: center; padding-block: 28px 40px; }
+  .hero h1 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4.6vw, 46px); margin: 0 0 14px; letter-spacing: .01em; }
+  .hero h1 em { font-style: normal; color: var(--marker); }
+  .hero p.lead { font-size: 17px; color: var(--ink-dim); margin: 0 0 24px; max-width: 30em; }
+  .dl { display: grid; gap: 10px; justify-items: start; }
+  .btn { display: inline-flex; align-items: center; gap: 14px; background: var(--accent); color: var(--accent-ink); text-decoration: none;
+         padding: 14px 24px 14px 20px; border-radius: 12px; font-weight: 700; font-size: 18px; box-shadow: 0 6px 18px -8px var(--accent); }
+  .btn:hover { filter: brightness(1.08); }
+  .btn svg { width: 26px; height: 26px; flex: none; }
+  .btn small { display: block; font-weight: 500; font-size: 12.5px; opacity: .85; font-family: var(--mono); letter-spacing: .02em; }
+  .dl .alt { font-size: 14px; color: var(--ink-dim); }
+  .dl .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  .chip { background: var(--chip); color: var(--ink-dim); font-size: 12.5px; padding: 3px 10px; border-radius: 999px; }
+
+  .frame { border-radius: 14px; overflow: hidden; background: var(--dusk-a); box-shadow: 0 24px 48px -28px rgba(20, 10, 60, .55); }
+  .frame img { display: block; width: 100%; height: auto; }
+  /* the hero cycles through four stills of the samples, one at a time; with reduced motion the first stays */
+  .slides { position: relative; aspect-ratio: 16 / 9; max-width: 100%; }
+  .slides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; }
+  .slides img:first-child { opacity: 1; }
+  .frame figcaption { background: var(--dusk-a); color: #c9c3e6; font-size: 12px; padding: 7px 12px; }
+  .frame { margin: 0; }
+
+  /* ---- start in three beats */
+  section { padding-block: 36px; border-top: 1px solid var(--rule); }
+  .beats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; list-style: none; padding: 0; margin: 0; }
+  .beats li { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 18px 20px; display: grid; gap: 6px; align-content: start; }
+  .beats .n { font-family: var(--mono); font-size: 12px; color: var(--marker); letter-spacing: .08em; }
+  .beats b { font-size: 17px; }
+  .beats p { margin: 0; color: var(--ink-dim); font-size: 14.5px; line-height: 1.7; }
+  .smart { margin-top: 14px; font-size: 14px; color: var(--ink-dim); }
+
+  /* ---- features: picture beside words */
+  .feat { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px 40px; align-items: center; margin-bottom: 34px; }
+  .feat:nth-of-type(even) .pic { order: 2; }
+  .feat h3 { margin: 0 0 8px; font-size: 20px; }
+  .feat p { margin: 0; color: var(--ink-dim); }
+  .pic { border-radius: 12px; overflow: hidden; border: 1px solid var(--rule); background: var(--surface); }
+  .pic img, .pic video { display: block; width: 100%; height: auto; }
+
+  /* ---- needs + questions */
+  .two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+  .needs { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .needs li { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px; font-size: 15px; }
+  .needs .tag { font-size: 12px; text-align: center; border-radius: 6px; padding: 2px 0; align-self: start; margin-top: 3px; }
+  .tag.must { background: var(--accent); color: var(--accent-ink); }
+  .tag.opt { background: var(--chip); color: var(--ink-dim); }
+  details { border-bottom: 1px solid var(--rule); padding-block: 10px; }
+  details summary { cursor: pointer; font-weight: 700; font-size: 15.5px; }
+  details p { margin: 8px 0 4px; color: var(--ink-dim); font-size: 14.5px; }
+  code, .hash { font-family: var(--mono); font-size: 12.5px; background: var(--chip); padding: 1px 6px; border-radius: 4px; overflow-wrap: anywhere; }
+
+  footer { font-size: 13px; color: var(--ink-dim); padding-top: 28px; border-top: 1px solid var(--rule); display: grid; gap: 6px; }
+
+  @media (max-width: 760px) {
+    .hero, .feat, .two { grid-template-columns: minmax(0, 1fr); }
+    .feat:nth-of-type(even) .pic { order: 0; }
+    .beats { grid-template-columns: minmax(0, 1fr); }
+    .bar nav { display: none; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn { transition: filter .15s; }
+    .slides img { animation: slide 16s infinite; }
+    .slides img:nth-child(2) { animation-delay: 4s; }
+    .slides img:nth-child(3) { animation-delay: 8s; }
+    .slides img:nth-child(4) { animation-delay: 12s; }
+    .slides img:first-child { opacity: 1; animation-delay: -0.8s; }
+    @keyframes slide { 0% { opacity: 0 } 5% { opacity: 1 } 25% { opacity: 1 } 30% { opacity: 0 } 100% { opacity: 0 } }
+  }
+  /* what the page needs without the artifact viewer's reset */
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; }
+  img, video { max-width: 100%; }
+  [hidden] { display: none !important; }
+  .dl small:empty { display: none; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="bar">
+    <img src="assets/icon.png" alt="">
+    <b>KTR_LyricMV</b>
+    <nav aria-label="ページ内">
+      <a href="#start">はじめかた</a>
+      <a href="#features">できること</a>
+      <a href="#needs">動作環境</a>
+      <a href="#faq">よくある質問</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <h1>歌詞が、<em>拍</em>に乗って動き出す。</h1>
+      <p class="lead">曲を読み込んで、拍に合わせて歌詞を並べ、文字の見た目と動きを選ぶだけ。歌詞動画を MP4 に書き出せる、Windows 用の無料ソフトです。</p>
+      <div class="dl">
+        <a class="btn" id="dl-setup" href="https://github.com/KTR-Shibata/KTR_LyricMV-releases/releases/latest">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m6 10 6 6 6-6"/><path d="M4 20h16"/></svg>
+          <span>無料ダウンロード<small id="dl-setup-meta">Windows 用インストーラー</small></span>
+        </a>
+        <span class="alt">手動インストールする場合は <a id="dl-zip" href="https://github.com/KTR-Shibata/KTR_LyricMV-releases/releases/latest">zip 版<span id="dl-zip-size"></span></a></span>
+        <div class="meta"><span class="chip">Windows 10 / 11（64 ビット）</span><span class="chip">管理者権限いらず</span><span class="chip">AI 機能なし</span></div>
+      </div>
+    </div>
+    <figure class="frame" aria-label="付属のサンプルで作った画面">
+      <div class="slides">
+        <img src="assets/hero-1.jpg" alt="夜の街の上に、ネオンのような桃色の歌詞「朝を描いて」">
+        <img src="assets/hero-2.jpg" alt="夕焼けの山並みの上に、大きな歌詞「重ねて走れ」">
+        <img src="assets/hero-3.jpg" alt="夜の街の上に、青く光る歌詞「夜を越えていく」">
+        <img src="assets/hero-4.jpg" alt="星空の下に、歌詞「重ねて走れ」と英語の訳詞">
+      </div>
+      <figcaption>付属のサンプルで作った画面（アプリの「画像で保存」で書き出したもの）</figcaption>
+    </figure>
+    </div>
+
+  <section id="start">
+    <h2>3 ステップではじめる</h2>
+    <ol class="beats">
+      <li><span class="n">STEP 1</span><b>ダウンロードして入れる</b><p>上のボタンからインストーラーを入れます。「PC が保護されました」と出たら「詳細情報」→「実行」。</p></li>
+      <li><span class="n">STEP 2</span><b>サンプルを開く</b><p>☰ メニューの「サンプルを開く」→「はじめての歌詞動画」。Space で再生してみましょう。</p></li>
+      <li><span class="n">STEP 3</span><b>歌詞を選んで見本を押す</b><p>「かんたん」タブの見本（タイル）を押すと、その歌詞の見た目や動きが変わります。</p></li>
+    </ol>
+    <p class="smart">動画に書き出すときだけ、無料の変換ソフト ffmpeg が要ります。入れ方は使い方ガイドにあります（あとからで大丈夫です）。</p>
+  </section>
+
+  <section id="features">
+    <h2>できること</h2>
+    <div class="feat">
+      <div class="pic"><img src="assets/main-window.png" alt="KTR_LyricMV のメイン画面。左に編集パネル、右にプレビュー、下に拍のタイムライン"></div>
+      <div><h3>拍で並べる、見たまま書き出す</h3><p>位置と長さは秒ではなく「小節・拍」。曲を流しながら Enter を押すだけで、歌詞を 1 行ずつ置けます。プレビューの絵と音が、そのまま MP4 になります。</p></div>
+    </div>
+    <div class="feat">
+      <div class="pic"><img src="assets/dice.png" alt="サイコロのウィンドウ。選んだ歌詞を 9 通りの見た目で描いた案が並ぶ"></div>
+      <div><h3>迷ったら、サイコロで 9 案</h3><p>グラデーション・光沢・質感・筆のかすれなど 54 種の見た目と、登場・退場・ループの動きから選べます。決めきれないときはサイコロを振ると、選んだ歌詞そのもので 9 通りの案が並びます。押して試し、気に入ったら「これにする」。</p></div>
+    </div>
+    <div class="feat">
+      <div class="pic"><video src="assets/jizura.mp4" poster="assets/jizura.jpg" autoplay muted loop playsinline aria-label="JIZURA レイヤー（JZシンセ80s）が歌詞から組み立てた文字PV の 8 秒。帯がずれ重なる文字、円に沿う文字、吹き出しなどが次々に切り替わる"></video></div>
+      <div><h3>文字PV を自動で組み立てる JIZURA に対応</h3><p>文字PV を自動で組み立てる JIZURA（hakoniwa氏 作、MIT ライセンス）をアプリの中で動かせます。歌詞から、カット割り・レイアウト・演出・背景までを組み立てて描き、行ごとに部品を選び直すこともできます。インターネットにはつながず、PC の書体で描きます。</p></div>
+    </div>
+    <div class="feat">
+      <div class="pic"><img src="assets/narration.png" alt="読み上げて並べるのダイアログ。本文の欄に小説の文章、声・速さ・高さなどの設定"></div>
+      <div><h3>小説を読み上げて、朗読動画に</h3><p>小説などの文章を、PC で動かした VOICEVOX に 1 文ずつ読み上げてもらい、声の音声トラックと、数行ずつの文字のクリップにして並べます。声の大きさも聴きやすく整えるので、朗読動画やオーディオブックがすぐ作れます。</p></div>
+    </div>
+    <div class="feat">
+      <div class="pic"><img src="assets/scene.jpg" alt="夕焼けの山並みと木の枝を奥行き違いで重ねた景色に、歌詞「夜をほどいていく」"></div>
+      <div><h3>背景・カメラ・光で仕上げる</h3><p>写真や動画、雨や光の粒などアプリが描く素材、音に合わせて動くスペクトラム、360° 写真。奥行きのあるカメラの動きや、拍に合わせた閃光で、歌詞の後ろの景色も動かせます。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="two">
+      <div id="needs">
+        <h2>動作環境</h2>
+        <ul class="needs">
+          <li><span class="tag must">必要</span><span>Windows 10 / 11（64 ビット）。.NET は同梱しているので、別に入れるものはありません。</span></li>
+          <li><span class="tag opt">書き出すとき</span><span><a href="https://ffmpeg.org/download.html">ffmpeg</a>（無料）。歌詞を置く・見た目を付ける・再生するまでは無くても使えます。</span></li>
+          <li><span class="tag opt">読み上げ</span><span><a href="https://voicevox.hiroshiba.jp/">VOICEVOX</a>（文章を声で読ませるときだけ）。</span></li>
+          <li><span class="tag opt">JIZURA</span><span>Microsoft Edge WebView2（Windows 11 には最初から入っています）。</span></li>
+        </ul>
+      </div>
+      <div id="faq">
+        <h2>よくある質問</h2>
+        <details><summary>インストーラー版と zip 版、どちらを選べば？</summary><p>迷ったらインストーラー版です。zip 版は、好きなフォルダに展開して <code>KTR_LyricMV.exe</code> を起動します。中身は同じです。</p></details>
+        <details><summary>「Windows によって PC が保護されました」と出ます</summary><p>デジタル署名をしていないために出る表示です。「詳細情報」→「実行」で起動できます。</p></details>
+        <details><summary>ダウンロードしたファイルが本物か確かめたい</summary><p>各リリースに載せている SHA-256 と見比べます。コマンドプロンプトで <code>certutil -hashfile ファイル名 SHA256</code>。</p></details>
+        <details><summary>作った動画を公開・収益化してもいい？</summary><p>はい。付属のサンプルの曲や絵を使うときは、表記をお願いします（使い方ガイドの「サンプルの利用条件」）。</p></details>
+        <details><summary>前の版はどこ？</summary><p><a href="https://github.com/KTR-Shibata/KTR_LyricMV-releases/releases">すべてのリリース</a>から選べます。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>制作 KTR_Shibata ・ 無料ソフト ・ 動作の保証はありません（免責事項）</span>
+    <span>同梱ソフトウェア: .NET、SkiaSharp、NAudio、OpenTK、JIZURA（hakoniwa、MIT License）、KanjiVG（CC BY-SA 3.0）、WebView2。ライセンスは配布物の THIRD-PARTY-NOTICES.txt に。</span>
+    <details>
+      <summary>免責事項</summary>
+      <p>本ソフトウェアは無償で提供するもので、動作・品質・特定の目的への適合性などについて、いかなる保証もいたしません。本ソフトウェアの使用または使用できなかったことによって生じたいかなる損害（データの消失、プロジェクトや作成した動画の破損、パソコンの不具合などを含みます）についても、作者は一切の責任を負いません。ご利用は利用者ご自身の責任でお願いします。</p>
+      <p>This software is provided free of charge, "as is", without warranty of any kind. The author accepts no liability for any damage arising from its use or inability to use it, including loss of data or damage to projects or videos. Use it at your own risk.</p>
+    </details>
+    <span><a href="https://github.com/KTR-Shibata/KTR_LyricMV-releases/releases">すべてのリリース（前の版）</a> ・ <a href="https://github.com/KTR-Shibata/KTR_LyricMV-releases">GitHub の配布リポジトリ</a></span>
+  </footer>
+</div>
+<script>
+  (function () {
+    var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    document.querySelectorAll(".pic video").forEach(function (v) {
+      if (still) { v.removeAttribute("autoplay"); v.pause(); }
+    });
+  })();
+</script>
+
+<script>
+  // The newest release's files, straight from GitHub: the buttons then download them instead of opening the release
+  // page, and show its version and sizes. If GitHub cannot be asked (offline, rate limit), they stay on the release page.
+  (function () {
+    var api = "https://api.github.com/repos/KTR-Shibata/KTR_LyricMV-releases/releases/latest";
+    function mb(bytes) { return (bytes / 1048576).toFixed(1) + " MB"; }
+    fetch(api, { headers: { "Accept": "application/vnd.github+json" } })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (rel) {
+        var version = ((rel.name || "").match(/ver\.\s*(\S+)/) || [])[1] || rel.tag_name;
+        (rel.assets || []).forEach(function (a) {
+          if (/-setup\.exe$/i.test(a.name)) {
+            document.getElementById("dl-setup").href = a.browser_download_url;
+            document.getElementById("dl-setup-meta").textContent = "ver. " + version + " ・ インストーラー " + mb(a.size);
+          } else if (/-win-x64\.zip$/i.test(a.name)) {
+            document.getElementById("dl-zip").href = a.browser_download_url;
+            document.getElementById("dl-zip-size").textContent = "（" + mb(a.size) + "）";
+          }
+        });
+      })
+      .catch(function () { /* the links stay on the release page */ });
+  })();
+</script>
+</body>
+</html>
