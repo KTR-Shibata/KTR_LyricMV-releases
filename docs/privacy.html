@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KTR_LyricMV プライバシーポリシー</title>
+<link rel="icon" href="assets/icon.png">
+<style>
+  :root {
+    --bg: #f6f4fb; --surface: #ffffff; --ink: #1d1a2b; --ink-dim: #5d5873; --rule: #e2deee; --accent: #2f6df6; --chip: #eeebf7;
+    --body: "Zen Kaku Gothic New", "Yu Gothic UI", "Hiragino Sans", "Meiryo", sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #15131f; --surface: #1e1b2b; --ink: #ecebf4; --ink-dim: #a7a2bd; --rule: #302c42; --accent: #5b8cff; --chip: #262238; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15131f; --surface: #1e1b2b; --ink: #ecebf4; --ink-dim: #a7a2bd; --rule: #302c42; --accent: #5b8cff; --chip: #262238; color-scheme: dark;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.8; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+  a { color: var(--accent); }
+  .bar { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+  .bar img { width: 32px; height: 32px; border-radius: 8px; }
+  h1 { font-size: 26px; line-height: 1.4; margin: 28px 0 4px; }
+  .date { color: var(--ink-dim); font-size: 14px; margin: 0 0 24px; }
+  h2 { font-size: 18px; margin: 28px 0 8px; }
+  p, li { color: var(--ink); }
+  ul { padding-left: 1.3em; }
+  code { font-family: Consolas, monospace; font-size: 13.5px; background: var(--chip); padding: 1px 6px; border-radius: 4px; overflow-wrap: anywhere; }
+  .en { margin-top: 48px; padding-top: 8px; border-top: 1px solid var(--rule); }
+  .en p, .en li { color: var(--ink-dim); font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar"><img src="assets/icon.png" alt=""><a href="./">KTR_LyricMV</a></div>
+
+  <h1>プライバシーポリシー</h1>
+  <p class="date">制定日: 2026年10月13日</p>
+
+  <p>このページは、歌詞動画を作る Windows 用ソフト KTR_LyricMV（以下「本ソフト」）が、利用者の情報をどう扱うかを説明します。Microsoft Store 版・インストーラー版・zip 版のどれにも当てはまります。</p>
+
+  <h2>集める情報</h2>
+  <p>本ソフトは、利用者の個人情報を集めません。名前・メールアドレス・アカウント・位置・使い方の記録などを、作者やほかの誰かに送ることはありません。広告も、利用状況の送信（テレメトリ）もありません。</p>
+
+  <h2>インターネットとの通信</h2>
+  <p>本ソフトはインターネットに接続しません。</p>
+  <ul>
+    <li>文章の読み上げで VOICEVOX を使うときだけ、同じパソコンの中で動いている VOICEVOX（<code>127.0.0.1</code>）と通信します。パソコンの外には出ません。</li>
+    <li>JIZURA レイヤーは Microsoft Edge WebView2 の中で動きますが、ネットワークへの通信はすべて止めています。</li>
+    <li>動画の書き出しでは、利用者が入れた ffmpeg を同じパソコンの中で動かします。</li>
+  </ul>
+
+  <h2>パソコンに保存する情報</h2>
+  <p>本ソフトは、次のものを利用者のパソコンの中にだけ保存します。</p>
+  <ul>
+    <li>設定・プリセット・テンプレート・最近使ったファイルの一覧・エラーの記録（<code>%APPDATA%\KTR_LyricMV</code>）</li>
+    <li>作り直せる一時ファイル（<code>%TEMP%\KTR_LyricMV</code> など）</li>
+    <li>利用者が保存したプロジェクトや書き出した動画（利用者が選んだ場所）</li>
+  </ul>
+  <p>これらは外に送られません。エラーの記録も、パソコンの中に残すだけです。不要になったら、上のフォルダを削除できます。</p>
+
+  <h2>Microsoft Store について</h2>
+  <p>Microsoft Store から入手した場合、入手やアプリの異常終了などについて Microsoft が集める情報は、<a href="https://privacy.microsoft.com/ja-jp/privacystatement">Microsoft のプライバシーに関する声明</a>に従って扱われます。作者が Microsoft から受け取るのは、個人を特定できない集計（入手数など）と、Microsoft が提供する異常終了の報告だけです。</p>
+
+  <h2>このポリシーの変更</h2>
+  <p>内容を変えるときは、このページを更新し、制定日の下に更新日を書きます。</p>
+
+  <h2>お問い合わせ</h2>
+  <p>KTR music lab.（制作 KTR_Shibata）<br>
+  <a href="https://github.com/KTR-Shibata/KTR_LyricMV-releases/issues">GitHub の Issues</a> からご連絡ください。</p>
+
+  <div class="en" lang="en">
+    <h2>Privacy policy (English)</h2>
+    <p>Effective: October 13, 2026</p>
+    <ul>
+      <li>KTR_LyricMV does not collect any personal information. It sends no data to the author or anyone else, and has no ads, accounts or telemetry.</li>
+      <li>It does not connect to the internet. It talks only to the VOICEVOX engine on the same PC (127.0.0.1) when the user uses the read-aloud feature. Its WebView2 component has all network access blocked. ffmpeg, installed by the user, runs on the same PC.</li>
+      <li>Settings, presets, recent-file lists and error logs are stored only on the user's PC (%APPDATA%\KTR_LyricMV); temporary files in %TEMP%\KTR_LyricMV; projects and videos where the user saves them. None of it is sent anywhere.</li>
+      <li>If obtained from the Microsoft Store, data Microsoft collects is handled under the <a href="https://privacy.microsoft.com/en-us/privacystatement">Microsoft Privacy Statement</a>. The author receives only aggregated, non-identifying figures and the crash reports Microsoft provides.</li>
+      <li>Contact: KTR music lab. (KTR_Shibata), via <a href="https://github.com/KTR-Shibata/KTR_LyricMV-releases/issues">GitHub Issues</a>.</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
