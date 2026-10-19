@@ -48,6 +48,29 @@ certutil -hashfile KTR_LyricMV-<版>-setup.exe SHA256
 </details>
 
 <details>
+<summary>禁止事項 / Prohibited acts</summary>
+
+本ソフトウェア（KTR_LyricMV と組み立てツール。同梱のオープンソースソフトウェアを除きます）について、次のことを禁止します。
+
+- リバースエンジニアリング、逆コンパイル、逆アセンブル、そのほかの方法でプログラムを解析すること
+- 改変すること、改変したものを配布すること
+- 作者の許可なく、再配布・販売・貸与すること（ダウンロードページの紹介やリンクは自由です）
+
+ただし、法令によって認められる行為は除きます。同梱のオープンソースソフトウェア（JIZURA など）は、それぞれのライセンス（`THIRD-PARTY-NOTICES.txt`）に従います。
+本ソフトウェアで作った動画やプロジェクトは、この禁止事項の対象ではありません。
+
+The following are prohibited for this software (KTR_LyricMV and its builder tool, excluding the bundled open-source software):
+
+- Reverse engineering, decompiling, disassembling, or otherwise analyzing the program
+- Modifying it, or distributing modified versions of it
+- Redistributing, selling, or lending it without the author's permission (introducing or linking to the download page is welcome)
+
+This does not apply to acts permitted by applicable law. The bundled open-source software (such as JIZURA) is governed by its own license (see `THIRD-PARTY-NOTICES.txt`).
+Videos and projects you make with this software are not subject to these restrictions.
+
+</details>
+
+<details>
 <summary>免責事項</summary>
 
 本ソフトウェアは無償で提供するもので、動作・品質・特定の目的への適合性などについて、いかなる保証もいたしません。
