@@ -158,11 +158,11 @@
       <h1>歌詞が、<em>拍</em>に乗って動き出す。</h1>
       <p class="lead">曲を読み込んで、拍に合わせて歌詞を並べ、文字の見た目と動きを選ぶだけ。歌詞動画を MP4 に書き出せる、Windows 用の無料ソフトです。</p>
       <div class="dl">
-        <a class="btn" id="dl-setup" href="https://github.com/KTR-Shibata/KTR_LyricMV-releases/releases/latest">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m6 10 6 6 6-6"/><path d="M4 20h16"/></svg>
-          <span>無料ダウンロード<small id="dl-setup-meta">Windows 用インストーラー</small></span>
+        <a class="btn" href="https://apps.microsoft.com/detail/9n5tg2zct045?hl=ja-JP&amp;gl=JP">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16l-1.2 11.2a1 1 0 0 1-1 .8H6.2a1 1 0 0 1-1-.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+          <span>Microsoft Store で入手<small>無料 ・ Windows 10 / 11</small></span>
         </a>
-        <span class="alt">手動インストールする場合は <a id="dl-zip" href="https://github.com/KTR-Shibata/KTR_LyricMV-releases/releases/latest">zip 版<span id="dl-zip-size"></span></a></span>
+        <span class="alt">ストアが使えない PC 向け: <a id="dl-setup" href="https://github.com/KTR-Shibata/KTR_LyricMV-releases/releases/latest">インストーラー版<span id="dl-setup-meta"></span></a> ・ <a id="dl-zip" href="https://github.com/KTR-Shibata/KTR_LyricMV-releases/releases/latest">zip 版<span id="dl-zip-size"></span></a></span>
         <div class="meta"><span class="chip">Windows 10 / 11（64 bit）</span><span class="chip">ネット接続不要</span><span class="chip">AI不使用</span></div>
       </div>
     </div>
@@ -180,7 +180,7 @@
   <section id="start">
     <h2>3 ステップではじめる</h2>
     <ol class="beats">
-      <li><span class="n">STEP 1</span><b>ダウンロードして入れる</b><p>上のボタンからインストーラーを入れます。「PC が保護されました」と出たら「詳細情報」→「実行」。</p></li>
+      <li><span class="n">STEP 1</span><b>Microsoft Store から入れる</b><p>上のボタンからストアのページを開き、「入手」を押します。スタートメニューに KTR_LyricMV が入ります。</p></li>
       <li><span class="n">STEP 2</span><b>サンプルを開く</b><p>☰ メニューの「サンプルを開く」→「はじめての歌詞動画」。Space で再生してみましょう。</p></li>
       <li><span class="n">STEP 3</span><b>歌詞を選んで見本を押す</b><p>「かんたん」タブの見本（タイル）を押すと、その歌詞の見た目や動きが変わります。</p></li>
     </ol>
@@ -226,9 +226,9 @@
       </div>
       <div id="faq">
         <h2>よくある質問</h2>
-        <details><summary>インストーラー版と zip 版、どちらを選べば？</summary><p>迷ったらインストーラー版です。zip 版は、好きなフォルダに展開して <code>KTR_LyricMV.exe</code> を起動します。中身は同じです。</p></details>
-        <details><summary>「Windows によって PC が保護されました」と出ます</summary><p>デジタル署名をしていないために出る表示です。「詳細情報」→「実行」で起動できます。</p></details>
-        <details><summary>ダウンロードしたファイルが本物か確かめたい</summary><p>各リリースに載せている SHA-256 と見比べます。コマンドプロンプトで <code>certutil -hashfile ファイル名 SHA256</code>。</p></details>
+        <details><summary>ストア版・インストーラー版・zip 版、どれを選べば？</summary><p>迷ったらストア版です。Microsoft の署名付きで、ストアで更新されます。ストアが使えない PC ではインストーラー版、好きなフォルダに置きたいときは zip 版（展開して <code>KTR_LyricMV.exe</code> を起動）を選びます。中身は同じです。新しい版は、ストアの審査があるぶん、インストーラー版・zip 版より数日遅れて届くことがあります。設定と自作の効果はどれも同じ場所を使うので、入れ替えても引き継がれます。</p></details>
+        <details><summary>インストーラー版で「Windows によって PC が保護されました」と出ます</summary><p>インストーラー版と zip 版はデジタル署名をしていないために出る表示です。「詳細情報」→「実行」で起動できます。ストア版では出ません。</p></details>
+        <details><summary>インストーラー版・zip 版のファイルが本物か確かめたい</summary><p>各リリースに載せている SHA-256 と見比べます。コマンドプロンプトで <code>certutil -hashfile ファイル名 SHA256</code>。</p></details>
         <details><summary>作った動画を公開・収益化してもいい？</summary>
           <p>もちろん、OKです。使用ソフト名としてKTR_LyricMVを記載する必要もありません（書いていただければ、それはそれで喜びます）。ただし、付属のサンプルの曲や絵を使うときのみ、KTR_LyricMVの表記をお願いします（使い方ガイドの「サンプルの利用条件」）。</p></details>
       </div>
@@ -268,7 +268,7 @@
         (rel.assets || []).forEach(function (a) {
           if (/-setup\.exe$/i.test(a.name)) {
             document.getElementById("dl-setup").href = a.browser_download_url;
-            document.getElementById("dl-setup-meta").textContent = "ver. " + version + " ・ インストーラー " + mb(a.size);
+            document.getElementById("dl-setup-meta").textContent = "（ver. " + version + " ・ " + mb(a.size) + "）";
           } else if (/-win-x64\.zip$/i.test(a.name)) {
             document.getElementById("dl-zip").href = a.browser_download_url;
             document.getElementById("dl-zip-size").textContent = "（" + mb(a.size) + "）";

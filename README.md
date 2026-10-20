@@ -13,8 +13,13 @@
 
 できることの紹介・はじめかた・動作環境・よくある質問は、上のページにまとめています。
 
-ファイルを直接選ぶときは [最新版のリリース](https://github.com/KTR-Shibata/KTR_LyricMV-releases/releases/latest) から、ふつうは
+### **[▶ Microsoft Store で入手（無料）](https://apps.microsoft.com/detail/9n5tg2zct045?hl=ja-JP&gl=JP)**
+
+ふつうはストア版を入れてください。Microsoft の署名付きで、ストアで更新されます。
+
+ストアが使えない PC では、[最新版のリリース](https://github.com/KTR-Shibata/KTR_LyricMV-releases/releases/latest) から
 `KTR_LyricMV-<版>-setup.exe`（インストーラー）を選びます。手動インストールする場合は `KTR_LyricMV-<版>-win-x64.zip` です。
+中身はストア版と同じです（新しい版は、ストアの審査があるぶん、ストア版のほうが数日遅れて届くことがあります）。
 「Source code」は開発用のファイルなので、ダウンロードする必要はありません。
 
 ## 動作環境
@@ -25,9 +30,9 @@
   読み上げて並べるには [VOICEVOX](https://voicevox.hiroshiba.jp/) が必要です（使うときだけ）
 
 <details>
-<summary>はじめて起動するとき・ファイルの確かめ方</summary>
+<summary>インストーラー版・zip 版をはじめて起動するとき・ファイルの確かめ方</summary>
 
-コード署名をしていないため「Windows によって PC が保護されました」と表示されることがあります。
+インストーラー版と zip 版はコード署名をしていないため「Windows によって PC が保護されました」と表示されることがあります。
 「詳細情報」→「実行」で起動できます。
 
 ダウンロードしたファイルが本物かどうかは、各リリースに載せている SHA-256 と照らし合わせて確かめられます。
