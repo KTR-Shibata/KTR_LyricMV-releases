@@ -27,7 +27,7 @@
 - Windows 10 / 11（64 ビット）。.NET は同梱しているので、別のインストールは不要です
 - 動画の書き出しと動画素材の読み込みには [ffmpeg](https://ffmpeg.org/download.html) が必要です（同梱していません。入れ方は使い方ガイドに）
 - JIZURA レイヤーには Microsoft Edge WebView2 ランタイム（Windows 11 には最初から入っています）、
-  読み上げて並べるには [VOICEVOX](https://voicevox.hiroshiba.jp/) が必要です（使うときだけ）
+  読み上げて並べると、組み立てツールの譜割で漢字の読みを調べるときには [VOICEVOX](https://voicevox.hiroshiba.jp/) が必要です（使うときだけ）
 
 <details>
 <summary>インストーラー版・zip 版をはじめて起動するとき・ファイルの確かめ方</summary>

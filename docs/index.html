@@ -181,7 +181,7 @@
     <h2>3 ステップではじめる</h2>
     <ol class="beats">
       <li><span class="n">STEP 1</span><b>Microsoft Store から入れる</b><p>上のボタンからストアのページを開き、「入手」を押します。スタートメニューに KTR_LyricMV が入ります。</p></li>
-      <li><span class="n">STEP 2</span><b>サンプルを開く</b><p>☰ メニューの「サンプルを開く」→「はじめての歌詞動画」。Space で再生してみましょう。</p></li>
+      <li><span class="n">STEP 2</span><b>サンプルを開く</b><p>起動すると出るスタート画面の「サンプルを開く」から「はじめての歌詞動画」を選びます。Space で再生してみましょう。</p></li>
       <li><span class="n">STEP 3</span><b>歌詞を選んで見本を押す</b><p>「かんたん」タブの見本（タイル）を押すと、その歌詞の見た目や動きが変わります。</p></li>
     </ol>
     <p class="smart">動画に書き出すときだけ、無料の変換ソフト ffmpeg が必要になります。<br>
@@ -191,13 +191,18 @@
 
   <section id="features">
     <h2>できること</h2>
+    <p class="smart" style="margin: -6px 0 26px">ver. 1.0 で、曲から組み立てる・テンポの自動検出・書き出しの予約などが加わりました（<a href="https://github.com/KTR-Shibata/KTR_LyricMV-releases/releases/latest">変更点の一覧</a>）。</p>
     <div class="feat">
       <div class="pic"><img src="assets/main-window.png" alt="KTR_LyricMV のメイン画面。左に編集パネル、右にプレビュー、下に拍のタイムライン"></div>
-      <div><h3>拍で並べる、見たまま書き出す</h3><p>位置と長さは秒ではなく「小節・拍」。曲を流しながら Enter を押すだけで、歌詞を 1 行ずつ置けます。プレビューの絵と音が、そのまま MP4 になります。</p></div>
+      <div><h3>拍で並べる、見たまま書き出す</h3><p>位置と長さは秒ではなく「小節・拍」。曲を流しながら Enter を押すだけで、歌詞を 1 行ずつ置けます。テンポと 1 小節目の頭は、曲を聞いて自動で見つけられます。プレビューの絵と音が、そのまま MP4 になります。</p></div>
     </div>
     <div class="feat">
       <div class="pic"><img src="assets/dice.png" alt="サイコロのウィンドウ。選んだ歌詞を 9 通りの見た目で描いた案が並ぶ"></div>
       <div><h3>迷ったら、サイコロで 9 案</h3><p>グラデーション・光沢・質感・筆のかすれなど 54 種の見た目と、登場・退場・ループの動きから選べます。決めきれないときはサイコロを振ると、選んだ歌詞そのもので 9 通りの案が並びます。押して試し、気に入ったら「これにする」。</p></div>
+    </div>
+    <div class="feat">
+      <div class="pic"><img src="assets/build-tool.png" alt="組み立てツールの画面。左に雰囲気のボタンとパートの一覧、右に組み立ての報告"></div>
+      <div><h3>曲から、まるごと組み立てる</h3><p>曲・歌詞のテキスト・歌詞の入ったボーカル MIDI と写真を選び、雰囲気（しっとり・元気・サイバー・和風など 14 種）を選ぶと、歌に合わせて歌詞を並べたプロジェクトができあがります。そこから自由に手直しできます。歌詞の無いメロディの MIDI に歌詞を当てる「譜割」も付いています。</p></div>
     </div>
     <div class="feat">
       <div class="pic"><video src="assets/jizura.mp4" poster="assets/jizura.jpg" autoplay muted loop playsinline aria-label="JIZURA レイヤー（JZシンセ80s）が歌詞から組み立てた文字PV の 8 秒。帯がずれ重なる文字、円に沿う文字、吹き出しなどが次々に切り替わる"></video></div>
@@ -205,11 +210,15 @@
     </div>
     <div class="feat">
       <div class="pic"><img src="assets/narration.png" alt="読み上げて並べるのダイアログ。本文の欄に小説の文章、声・速さ・高さなどの設定"></div>
-      <div><h3>小説を読み上げて、朗読動画に</h3><p>小説などの文章を、PC で動かした VOICEVOX に 1 文ずつ読み上げてもらい、声の音声トラックと、数行ずつの文字のクリップにして並べます。声の大きさも聴きやすく整えるので、朗読動画やオーディオブックがすぐ作れます。</p></div>
+      <div><h3>小説を読み上げて、朗読動画に</h3><p>小説などの文章を、PC で動かした VOICEVOX に 1 文ずつ読み上げてもらい、声の音声トラックと、数行ずつの文字のクリップにして並べます。人物ごとに声・見た目・立ち絵を変えたり、効果音・BGM・背景を入れたりもできます。読み方は文ごとに下見して直せて、声の大きさも聴きやすく整えるので、朗読動画やオーディオブックがすぐ作れます。</p></div>
     </div>
     <div class="feat">
       <div class="pic"><img src="assets/scene.jpg" alt="夕焼けの山並みと木の枝を奥行き違いで重ねた景色に、歌詞「夜をほどいていく」"></div>
       <div><h3>背景・カメラ・光で仕上げる</h3><p>写真や動画、雨や光の粒などアプリが描く素材、音に合わせて動くスペクトラム、360° 写真。奥行きのあるカメラの動きや、拍に合わせた閃光で、歌詞の後ろの景色も動かせます。</p></div>
+    </div>
+    <div class="feat">
+      <div class="pic"><img src="assets/export-queue.jpg" alt="書き出し前の点検の窓に見つからない素材が並び、書き出しの予約の窓に冒頭だけと本編の 2 つが待っている画面"></div>
+      <div><h3>書き出す前に点検、まとめて予約</h3><p>見つからない素材や、この PC に無い書体などを、書き出す前に知らせます。本編・サビだけ・音声だけなどを予約に並べておけば、続けて書き出せます。</p></div>
     </div>
   </section>
 
@@ -220,7 +229,7 @@
         <ul class="needs">
           <li><span class="tag must">必要</span><span>Windows 10 / 11（64 ビット）。.NET は同梱しているので、別に入れるものはありません。</span></li>
           <li><span class="tag opt">書き出すとき</span><span><a href="https://ffmpeg.org/download.html">ffmpeg</a>（無料）。歌詞を置く・見た目を付ける・再生するだけなら無くても使えます。</span></li>
-          <li><span class="tag opt">読み上げ</span><span><a href="https://voicevox.hiroshiba.jp/">VOICEVOX</a>（文章を声で読ませるときだけ）。</span></li>
+          <li><span class="tag opt">読み上げ</span><span><a href="https://voicevox.hiroshiba.jp/">VOICEVOX</a>（文章を声で読ませるとき、譜割で漢字の読みを調べるときだけ）。</span></li>
           <li><span class="tag opt">JIZURA</span><span>Microsoft Edge WebView2（Windows 11 には最初から入っています）。</span></li>
         </ul>
       </div>
